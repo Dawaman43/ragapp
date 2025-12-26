@@ -7,4 +7,5 @@ httpx
 sqlalchemy
 alembic
 asyncpg
-
+google-generativeai
+pydantic
