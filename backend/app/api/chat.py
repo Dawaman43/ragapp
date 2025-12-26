@@ -55,11 +55,7 @@ async def chat_health():
 
 @router.post("/chat/stream")
 async def chat_stream(request: ChatRequest):
-	"""Simple streaming wrapper: calls the same model and yields the full reply once.
-
-	This avoids using undefined variables and provides a streaming-compatible
-	response shape for clients that expect SSE/chunked output.
-	"""
+	
 
 	if not request.message or not request.message.strip():
 		raise HTTPException(status_code=400, detail="message is required")
