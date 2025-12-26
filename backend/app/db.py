@@ -1,4 +1,5 @@
 import os
+from urllib.parse import urlparse
 from pymongo import MongoClient
 
 # Expect a MongoDB URI in DATABASE_URL (or MONGO_URI); default to local
@@ -6,13 +7,12 @@ MONGO_URI = os.getenv("DATABASE_URL") or os.getenv("MONGO_URI") or "mongodb://lo
 
 client = MongoClient(MONGO_URI)
 
-# Determine database name from URI or fallback to 'ragapp'
+# Robustly determine database name from URI path, fallback to 'ragapp'
 try:
-    if "/" in MONGO_URI:
-        db_name = MONGO_URI.rsplit("/", 1)[-1]
-        if "?" in db_name:
-            db_name = db_name.split("?", 1)[0]
-    else:
+    parsed = urlparse(MONGO_URI)
+    path = (parsed.path or "").lstrip("/")
+    db_name = path.split("?", 1)[0] if path else "ragapp"
+    if not db_name:
         db_name = "ragapp"
 except Exception:
     db_name = "ragapp"
