@@ -1,7 +1,7 @@
 from typing import List, Tuple
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from .crud import list_documents
+from app.crud import list_documents
 
 _vectorizer: TfidfVectorizer | None = None
 _doc_texts: List[str] = []
