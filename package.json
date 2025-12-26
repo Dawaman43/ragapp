@@ -1,0 +1,17 @@
+{
+  "name": "ragapp",
+  "private": true,
+  "version": "0.0.0",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "install": "pnpm install",
+    "dev": "pnpm -w -r run dev",
+    "build": "pnpm -w -r run build",
+    "lint": "pnpm -w -r run lint",
+    "format": "pnpm -w -r run format",
+    "bootstrap": "pnpm install"
+  }
+}

@@ -1,0 +1,248 @@
+# Global gitignore for a mixed-language project (Node, Python, Go, Java, Docker, IDEs, OS files, etc.)
+
+# -------------------------
+# Operating System files
+# -------------------------
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+.Trash-*
+
+# -------------------------
+# Logs and databases
+# -------------------------
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.sql
+*.sqlite
+*.sqlite3
+
+# -------------------------
+# Runtime / environment
+# -------------------------
+.env
+.env.*
+.env.local
+.env.*.local
+*.env
+.secret
+credentials.json
+
+# -------------------------
+# Node
+# -------------------------
+node_modules/
+npm-packages/
+# Optional: lock files are usually committed (package-lock.json, yarn.lock)
+dist/
+build/
+out/
+.cache/
+.next/
+.nuxt/
+*.tgz
+
+# -------------------------
+# Python
+# -------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.Python
+venv/
+venv*/
+ENV/
+env/
+.env/
+.venv/
+pip-wheel-metadata/
+pip-selfcheck.json
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+develop-eggs/
+wheels/
+
+# Django
+*.pot
+*.py[cod]
+local_settings.py
+db.sqlite3
+media/
+
+# -------------------------
+# Go
+# -------------------------
+bin/
+pkg/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# -------------------------
+# Java / JVM
+# -------------------------
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.iml
+*.ipr
+*.iws
+.target/
+build/
+out/
+.gradle/
+.gradle-cache/
+!gradle/wrapper/gradle-wrapper.jar
+.idea/
+
+# -------------------------
+# Rust
+# -------------------------
+/target/
+/**/*.rs.bk
+Cargo.lock
+
+# -------------------------
+# C/C++
+# -------------------------
+*.o
+*.obj
+*.so
+*.exe
+*.out
+*.a
+*.lib
+*.lo
+*.la
+*.lai
+*.hi
+*.stackdump
+
+# -------------------------
+# IDEs / Editors
+# -------------------------
+# VS Code
+.vscode/
+.history/
+# JetBrains
+.idea/
+*.iml
+*.iws
+# Sublime
+*.sublime-workspace
+*.sublime-project
+# Vim / Editor swap files
+*~
+*.swp
+*.swo
+.session
+.tags
+
+# -------------------------
+# Containers / Docker
+# -------------------------
+docker-compose.override.yml
+.env.docker
+# Docker image layers, local data
+docker-compose.*.yml
+.docker/
+docker/compose/
+.volumes/
+
+# -------------------------
+# CI/CD
+# -------------------------
+/.circleci/*local*
+/.github/workflows/*local*
+# Local runner files
+/azure-pipelines.yml.local
+
+# -------------------------
+# Build artifacts / packaging
+# -------------------------
+dist/
+build/
+release/
+tmp/
+temp/
+*.log
+*.tmp
+*.bak
+*.swp
+*.cache
+
+# -------------------------
+# Documentation
+# -------------------------
+_site/
+docs/_build/
+build/docs/
+
+# -------------------------
+# Test artifacts / coverage
+# -------------------------
+.nyc_output/
+coverage/
+coverage-final.json
+jest-coverage/
+karma-coverage/
+test-output/
+
+# -------------------------
+# Secrets / keys
+# -------------------------
+*.pem
+*.key
+*.crt
+*.p12
+*.der
+id_rsa
+id_rsa.pub
+
+# -------------------------
+# Misc common
+# -------------------------
+*.DS_Store
+*.class
+*.pyc
+*.pyo
+*.phtml
+*.cache
+*.orig
+*.rej
+*.sublime-* 
+.idea/
+.vscode/
+Thumbs.db
+
+# -------------------------
+# Allow exceptions (uncomment to keep these)
+# -------------------------
+# !.env.example
+# !/docs/.keep
