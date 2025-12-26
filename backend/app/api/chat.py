@@ -17,8 +17,18 @@ async def chat_endpoint(request: ChatRequest):
 		raise HTTPException(status_code=400, detail="message is required")
 
 	# Build the messages payload for the LLM. Keep it simple for now.
+	# Perform retrieval to augment the prompt (RAG)
+	from app.services.retriever import retrieve
+
+	retrieved = retrieve(request.message, top_k=3)
+	context_texts = [t for (_id, t, score) in retrieved]
+
+	system_prompt = "You are a helpful assistant. Use the provided documents to answer when relevant.\n"
+	if context_texts:
+		system_prompt += "Relevant documents:\n" + "\n---\n".join(context_texts)
+
 	messages = [
-		{"role": "system", "content": "You are a helpful assistant."},
+		{"role": "system", "content": system_prompt},
 		{"role": "user", "content": request.message},
 	]
 

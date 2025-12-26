@@ -2,6 +2,7 @@ from os import getenv
 from fastapi import FastAPI
 
 from app.api.chat import router as chat_router
+from app.api.admin import router as admin_router
 
 
 app = FastAPI()
@@ -20,6 +21,7 @@ async def health():
 
 
 app.include_router(chat_router, prefix="/api")
+app.include_router(admin_router, prefix="/api")
 
 
 if __name__ == "__main__":
