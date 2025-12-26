@@ -11,5 +11,6 @@ asyncpg
 # RAG / uploads
 python-multipart
 scikit-learn
+pymongo
 google-generativeai
 pydantic

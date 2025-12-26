@@ -1,21 +1,19 @@
 from typing import List, Tuple
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from .db import SessionLocal
 from .crud import list_documents
 
 _vectorizer: TfidfVectorizer | None = None
 _doc_texts: List[str] = []
-_doc_ids: List[int] = []
+_doc_ids: List[str] = []
 _matrix = None
 
 
 def _rebuild_index():
     global _vectorizer, _doc_texts, _doc_ids, _matrix
-    with SessionLocal() as db:
-        docs = list_documents(db)
-    _doc_texts = [d.content for d in docs]
-    _doc_ids = [d.id for d in docs]
+    docs = list_documents()
+    _doc_texts = [d.get("content", "") for d in docs]
+    _doc_ids = [str(d.get("_id")) for d in docs]
     if _doc_texts:
         _vectorizer = TfidfVectorizer().fit(_doc_texts)
         _matrix = _vectorizer.transform(_doc_texts)

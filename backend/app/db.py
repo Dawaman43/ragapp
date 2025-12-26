@@ -1,12 +1,24 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base
 import os
+from pymongo import MongoClient
 
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./data.db")
+# Expect a MongoDB URI in DATABASE_URL (or MONGO_URI); default to local
+MONGO_URI = os.getenv("DATABASE_URL") or os.getenv("MONGO_URI") or "mongodb://localhost:27017/ragapp"
 
-engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {})
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-Base = declarative_base()
+client = MongoClient(MONGO_URI)
+
+# Determine database name from URI or fallback to 'ragapp'
+try:
+    if "/" in MONGO_URI:
+        db_name = MONGO_URI.rsplit("/", 1)[-1]
+        if "?" in db_name:
+            db_name = db_name.split("?", 1)[0]
+    else:
+        db_name = "ragapp"
+except Exception:
+    db_name = "ragapp"
+
+db = client[db_name]
 
 def init_db():
-    Base.metadata.create_all(bind=engine)
+    # MongoDB creates collections on first insert; nothing to do here.
+    return
