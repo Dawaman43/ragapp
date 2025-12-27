@@ -7,7 +7,6 @@
     "backend"
   ],
   "scripts": {
-    "install": "pnpm install",
     "dev": "pnpm -w -r run dev",
     "build": "pnpm -w -r run build",
     "lint": "pnpm -w -r run lint",
